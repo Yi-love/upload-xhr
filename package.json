@@ -1,0 +1,25 @@
+{
+  "name": "upload-xhr",
+  "version": "1.0.0",
+  "description": "File upload component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yi-love/upload-xhr.git"
+  },
+  "keywords": [
+    "xhr",
+    "upload",
+    "upload-xhr",
+    "ajax"
+  ],
+  "author": "Yi-love",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Yi-love/upload-xhr/issues"
+  },
+  "homepage": "https://github.com/Yi-love/upload-xhr#readme"
+}
