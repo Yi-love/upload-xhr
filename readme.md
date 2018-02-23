@@ -36,9 +36,9 @@ this.url = options.url || '/';
 //删除队列大小限制
 this.maxDeleteSize = Math.max(Math.round(options.maxDeleteSize || 1) , 10);
 //成功回调
-this.resolveCallBack = typeof options.resolveCallBack === 'function' ? options.resolveCallBack : emptyCallBack;
+this.resolveCallBack = typeof options.resolveCallBack === 'function' ? options.resolveCallBack : resolveCallBack;
 //失败回调
-this.rejectCallBack = typeof options.rejectCallBack === 'function' ? options.rejectCallBack : emptyCallBack;
+this.rejectCallBack = typeof options.rejectCallBack === 'function' ? options.rejectCallBack : rejectCallBack;
 //headers
 this.headers = options.headers || {};
 //query
