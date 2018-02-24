@@ -2,7 +2,7 @@
 File upload component（文件上传组件：支持多文件同时上传）
 
 ```js
-import UploadXHR from 'upload-xhr';
+import {UploadXHR} from 'upload-xhr';
 
 //可以注入一个resolveCallBack
 let handlerResponse = function(res , uploadXhrObj){

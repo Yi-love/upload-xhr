@@ -1,3 +1,3 @@
 'use strict';
 
-module.exports = require('./lib/upload-xhr');
+exports.UploadXHR = require('./src/upload-xhr');

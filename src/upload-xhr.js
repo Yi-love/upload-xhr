@@ -15,7 +15,7 @@ const rejectCallBack = (err)=>Promise.reject(err);
 /**
  * 多文件上传,自动上传
  */
-export default class UploadXHR {
+export class UploadXHR {
     constructor(options={}){
         //列表
         this.list = [];
@@ -95,7 +95,7 @@ export default class UploadXHR {
      * @return {[type]}     [description]
      */
     getUploadFileByUid(uid){
-        for ( let i = 0 ; i < this.list.length ; i++ ){
+        for ( let i = 0 ; i < this.list.length && uid ; i++ ){
             if ( this.list[i].uid === uid ){
                 return this.list[i];
             }
@@ -184,7 +184,6 @@ export default class UploadXHR {
                 })
                 .then(self.next.bind(self),self.next.bind(self));
             }
-
         }
         return this;
     }
@@ -209,7 +208,7 @@ export default class UploadXHR {
                 uploadObj.xhr.abort();
                 uploadObj.state = ABORT_STATE;
                 if ( uploadObj.promise ){
-                    uploadObj.promise.reject('use uid abort this request.');
+                    uploadObj.promise.reject(new Error(`use uid(${uid}) abort this request`));
                 }
             }
         }
@@ -235,7 +234,7 @@ export default class UploadXHR {
      */
     request(req){
         if ( !req ){
-            return Promise.reject('no request.');
+            return Promise.reject(new Error('no request.'));
         }
 
         //数据
@@ -261,7 +260,7 @@ export default class UploadXHR {
         }
         //获取xhr
         req.xhr = this.abort(req.uid).getXHR();
-        
+
         req.state = UPLOADING_STATE;
 
         req.promise = new Promise((resolve , reject)=>{
@@ -278,7 +277,7 @@ export default class UploadXHR {
                 if (req.xhr && req.xhr.status && (req.xhr.status === 200 || req.xhr.status === 304)) {
                     return resolve(req.xhr.responseText);
                 } else {
-                    return reject({message:UPLOAD_ERROR_TIPS , xhr:req.xhr});
+                    return reject({message:UPLOAD_ERROR_TIPS});
                 }
             };
             req.xhr.onerror = (event)=>{
